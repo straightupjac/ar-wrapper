@@ -252,6 +252,9 @@ class ArweaveClient {
       const newEdges = await fetchQuery(cursor)
       nResults = newEdges.edges.length
       resultEdges.push(...newEdges.edges)
+      if (!newEdges.cursor || cursor === newEdges.cursor) {
+        break;
+      }
       cursor = newEdges.cursor
     }
 
